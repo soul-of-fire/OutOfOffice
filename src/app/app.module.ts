@@ -8,28 +8,44 @@ import { Calendar } from '@ionic-native/calendar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AddEventPage } from '../pages/add-event/add-event';
+import { NativeCalendarPage } from '../pages/native-calendar/native-calendar';
+import { AngularCalendarPage } from '../pages/angular-calendar/angular-calendar';
+import { CustomEventTitleFormatterProvider } from '../providers/custom-event-title-formatter/custom-event-title-formatter';
+import { CustomDateFormatterProvider } from '../providers/custom-date-formatter/custom-date-formatter';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule, CalendarDateFormatter, CalendarEventTitleFormatter } from 'angular-calendar';
+import { CalendarWeekHoursViewModule } from 'angular-calendar-week-hours-view';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AddEventPage
+    AddEventPage,
+    NativeCalendarPage,
+    AngularCalendarPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    // BrowserAnimationsModule,
+    // CalendarModule,
+    // CalendarWeekHoursViewModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    AddEventPage
+    AddEventPage,
+    NativeCalendarPage,
+    AngularCalendarPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Calendar
+    Calendar,
+    CustomEventTitleFormatterProvider,
+    CustomDateFormatterProvider
   ]
 })
 export class AppModule {}
