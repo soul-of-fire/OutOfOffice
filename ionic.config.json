@@ -1,5 +1,7 @@
 {
   "name": "OutOfOffice",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
