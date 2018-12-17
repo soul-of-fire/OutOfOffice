@@ -3,20 +3,14 @@
     <ion-title>
       Calendars
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onAddEvent()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-buttons>
-    <button ion-button icon-only (click)="onNativeCalendar()" padding>
-      Native
-      <ion-icon name="add-circle"></ion-icon>
-    </button>
-    <button ion-button icon-only (click)="onAngularCalendar()" padding>
-      Angular
-      <ion-icon name="add-circle"></ion-icon>
-    </button>
-  </ion-buttons>
-
-  <ion-calendar #calendar [events]="currentEvents" (onDaySelect)="onDaySelect($event)"></ion-calendar>
+  <ion-calendar #calendar [events]="currentEvents | async" (onDaySelect)="onDaySelect($event)"></ion-calendar>
 </ion-content>

@@ -1,39 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AddEventPage } from '../add-event/add-event';
 import { Calendar } from '@ionic-native/calendar';
-import { NativeCalendarPage } from '../native-calendar/native-calendar';
-import { AngularCalendarPage } from '../angular-calendar/angular-calendar';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { CustomEventProvider } from '../../providers/custom-event/custom-event';
+import { Observer } from 'rxjs/Observer';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
-  public currentEvents = [
-    {
-      year: 2018,
-      month: 11,
-      date: 25
-    },
-    {
-      year: 2018,
-      month: 11,
-      date: 26
-    }
-  ];
+export class HomePage implements AfterViewInit {
 
-  constructor(public navCtrl: NavController) { }
+  @ViewChild('calendar') calendar;
+  currentEvents: Observer<any>;
 
-  onNativeCalendar() {
-    this.navCtrl.push(NativeCalendarPage)
+  constructor(public navCtrl: NavController,
+    public customEventProvider: CustomEventProvider) {
+    this.currentEvents = customEventProvider.currentEvents;
   }
 
-  onAngularCalendar() {
-    this.navCtrl.push(AngularCalendarPage)
+  ngAfterViewInit(): void {
+    this.customEventProvider.calendar = this.calendar;
   }
 
   onDaySelect($event) {
-    console.log($event);
+    console.log(this.customEventProvider.findEvent($event));
+  }
+
+  onAddEvent() {
+    this.navCtrl.push(AddEventPage);
   }
 }

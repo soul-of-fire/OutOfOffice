@@ -1,1 +1,1 @@
-https://devdactic.com/ionic-calendar-angular-calendar/
+https://github.com/gbrits/ionic-calendar#readme

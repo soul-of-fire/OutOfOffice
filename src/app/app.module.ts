@@ -8,19 +8,14 @@ import { Calendar } from '@ionic-native/calendar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AddEventPage } from '../pages/add-event/add-event';
-import { NativeCalendarPage } from '../pages/native-calendar/native-calendar';
-import { AngularCalendarPage } from '../pages/angular-calendar/angular-calendar';
-import { CustomEventTitleFormatterProvider } from '../providers/custom-event-title-formatter/custom-event-title-formatter';
-import { CustomDateFormatterProvider } from '../providers/custom-date-formatter/custom-date-formatter';
 import { CalendarModule } from 'ionic3-calendar-en';
+import { CustomEventProvider } from '../providers/custom-event/custom-event';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AddEventPage,
-    NativeCalendarPage,
-    AngularCalendarPage
+    AddEventPage
   ],
   imports: [
     BrowserModule,
@@ -31,17 +26,13 @@ import { CalendarModule } from 'ionic3-calendar-en';
   entryComponents: [
     MyApp,
     HomePage,
-    AddEventPage,
-    NativeCalendarPage,
-    AngularCalendarPage
+    AddEventPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Calendar,
-    CustomEventTitleFormatterProvider,
-    CustomDateFormatterProvider
+    CustomEventProvider
   ]
 })
 export class AppModule {}
