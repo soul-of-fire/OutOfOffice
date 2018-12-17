@@ -14,6 +14,7 @@ export class HomePage implements AfterViewInit {
 
   @ViewChild('calendar') calendar;
   currentEvents: Observer<any>;
+  selected: any;
 
   constructor(public navCtrl: NavController,
     public customEventProvider: CustomEventProvider) {
@@ -25,7 +26,7 @@ export class HomePage implements AfterViewInit {
   }
 
   onDaySelect($event) {
-    console.log(this.customEventProvider.findEvent($event));
+    this.selected = this.customEventProvider.findEvent($event);
   }
 
   onAddEvent() {

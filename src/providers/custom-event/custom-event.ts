@@ -8,7 +8,11 @@ export class CustomEventProvider {
   public currentEvents = new BehaviorSubject([{
     year: 2018,
     month: 11,
-    date: 25
+    date: 25,
+    data: {
+      title: "Title",
+      message: "Aha"
+    }
   }]);
   public calendar: any;
   

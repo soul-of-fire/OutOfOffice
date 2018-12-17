@@ -13,4 +13,12 @@
 
 <ion-content padding>
   <ion-calendar #calendar [events]="currentEvents | async" (onDaySelect)="onDaySelect($event)"></ion-calendar>
+  <ion-card *ngIf="selected && selected.data">
+    <ion-card-header>
+      {{selected.data.title}}
+    </ion-card-header>
+    <ion-card-content>
+      {{selected.data.message}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
