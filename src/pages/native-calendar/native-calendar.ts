@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AddEventPage } from '../add-event/add-event';
 import { Calendar } from '@ionic-native/calendar';
 

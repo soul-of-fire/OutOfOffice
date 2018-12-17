@@ -10,6 +10,19 @@ import { AngularCalendarPage } from '../angular-calendar/angular-calendar';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public currentEvents = [
+    {
+      year: 2018,
+      month: 11,
+      date: 25
+    },
+    {
+      year: 2018,
+      month: 11,
+      date: 26
+    }
+  ];
+
   constructor(public navCtrl: NavController) { }
 
   onNativeCalendar() {
@@ -18,5 +31,9 @@ export class HomePage {
 
   onAngularCalendar() {
     this.navCtrl.push(AngularCalendarPage)
+  }
+
+  onDaySelect($event) {
+    console.log($event);
   }
 }

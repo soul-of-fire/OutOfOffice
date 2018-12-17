@@ -17,4 +17,6 @@
       <ion-icon name="add-circle"></ion-icon>
     </button>
   </ion-buttons>
+
+  <ion-calendar #calendar [events]="currentEvents" (onDaySelect)="onDaySelect($event)"></ion-calendar>
 </ion-content>

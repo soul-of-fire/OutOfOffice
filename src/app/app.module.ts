@@ -12,9 +12,7 @@ import { NativeCalendarPage } from '../pages/native-calendar/native-calendar';
 import { AngularCalendarPage } from '../pages/angular-calendar/angular-calendar';
 import { CustomEventTitleFormatterProvider } from '../providers/custom-event-title-formatter/custom-event-title-formatter';
 import { CustomDateFormatterProvider } from '../providers/custom-date-formatter/custom-date-formatter';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CalendarModule, CalendarDateFormatter, CalendarEventTitleFormatter } from 'angular-calendar';
-import { CalendarWeekHoursViewModule } from 'angular-calendar-week-hours-view';
+import { CalendarModule } from 'ionic3-calendar-en';
 
 @NgModule({
   declarations: [
@@ -27,9 +25,7 @@ import { CalendarWeekHoursViewModule } from 'angular-calendar-week-hours-view';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    // BrowserAnimationsModule,
-    // CalendarModule,
-    // CalendarWeekHoursViewModule
+    CalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
