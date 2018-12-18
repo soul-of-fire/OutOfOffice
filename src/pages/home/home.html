@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Calendars
+      Calendar
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="onAddEvent()">
@@ -11,8 +11,12 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-calendar #calendar [events]="currentEvents | async" (onDaySelect)="onDaySelect($event)"></ion-calendar>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-calendar #calendar [events]="currentEvents | async" (onDaySelect)="onDaySelect($event)"></ion-calendar>
+    </ion-card-content>
+  </ion-card>
   <ion-card *ngIf="selected && selected.data">
     <ion-card-header>
       {{selected.data.title}}

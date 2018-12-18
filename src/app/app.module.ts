@@ -10,12 +10,14 @@ import { HomePage } from '../pages/home/home';
 import { AddEventPage } from '../pages/add-event/add-event';
 import { CalendarModule } from 'ionic3-calendar-en';
 import { CustomEventProvider } from '../providers/custom-event/custom-event';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AddEventPage
+    AddEventPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { CustomEventProvider } from '../providers/custom-event/custom-event';
   entryComponents: [
     MyApp,
     HomePage,
-    AddEventPage
+    AddEventPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
