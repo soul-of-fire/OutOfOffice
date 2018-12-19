@@ -86,3 +86,16 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+.select {
+  background-color: crimson !important;
+}
+
+ion-row:not(:nth-child(-n+2)) > ion-col:first-child, ion-row:not(:nth-child(-n+2)) > ion-col:last-child {
+  background-color: #7a1f1f;
+  color: white;
+}
+
+.eventBlip {
+  background: #7a1f1f !important;
+}

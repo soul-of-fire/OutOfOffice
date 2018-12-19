@@ -11,6 +11,8 @@ import { AddEventPage } from '../pages/add-event/add-event';
 import { CalendarModule } from 'ionic3-calendar-en';
 import { CustomEventProvider } from '../providers/custom-event/custom-event';
 import { LoginPage } from '../pages/login/login';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { LoginPage } from '../pages/login/login';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    CalendarModule
+    CalendarModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

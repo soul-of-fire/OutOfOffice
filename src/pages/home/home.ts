@@ -5,6 +5,8 @@ import { Calendar } from '@ionic-native/calendar';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CustomEventProvider } from '../../providers/custom-event/custom-event';
 import { Observer } from 'rxjs/Observer';
+import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -17,12 +19,14 @@ export class HomePage implements AfterViewInit {
   selected: any;
 
   constructor(public navCtrl: NavController,
-    public customEventProvider: CustomEventProvider) {
+    public customEventProvider: CustomEventProvider,
+    private storage: Storage) {
     this.currentEvents = customEventProvider.currentEvents;
   }
 
   ngAfterViewInit(): void {
     this.customEventProvider.calendar = this.calendar;
+    this.storage.get('user').then((data: any) => console.log(data));
   }
 
   onDaySelect($event) {
@@ -31,5 +35,9 @@ export class HomePage implements AfterViewInit {
 
   onAddEvent() {
     this.navCtrl.push(AddEventPage);
+  }
+
+  onLogOut() {
+    this.navCtrl.push(LoginPage);
   }
 }
