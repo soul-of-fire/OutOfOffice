@@ -17,7 +17,9 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <ion-calendar #calendar [events]="currentEvents | async" (onDaySelect)="onDaySelect($event)"></ion-calendar>
+      <div (swipe)="swipe($event)">
+        <ion-calendar #calendar [events]="currentEvents | async" (onDaySelect)="onDaySelect($event)"></ion-calendar>
+      </div>
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="selected && selected.data">

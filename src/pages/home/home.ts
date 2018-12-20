@@ -40,4 +40,9 @@ export class HomePage implements AfterViewInit {
   onLogOut() {
     this.navCtrl.push(LoginPage);
   }
+
+  swipe(event) {
+    event.direction === 2 && this.calendar.forward();
+    event.direction === 4 && this.calendar.back();
+  }
 }
