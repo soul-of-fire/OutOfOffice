@@ -1,8 +1,7 @@
 https://github.com/gbrits/ionic-calendar#readme
 
-event range
+store events
 login service - auto log out
-events table in firebase
 authorization - edit events
 event edit / delete
 has internet indicator - CRUD

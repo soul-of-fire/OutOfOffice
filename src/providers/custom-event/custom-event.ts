@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { EventModel } from '../../app/models/EventModel';
+import { ApiProvider } from '../api/api';
+import { merge, combineLatest } from 'rxjs/operators';
 
 @Injectable()
 export class CustomEventProvider {
 
   public calendar: any;
   public day = 1000 * 60 * 60 * 24;
-  public currentEvents = new BehaviorSubject([{
-    year: 2018,
-    month: 11,
-    date: 25,
-    data: {
-      title: "Title",
-      message: "Aha"
-    }
-  }]);
+  public currentEvents = new BehaviorSubject([]);
 
-  constructor() { }
+  constructor(public api: ApiProvider) { }
 
   public addEvent(data: any): void {
     const events = this.calendar.events;
@@ -44,5 +38,9 @@ export class CustomEventProvider {
 
   public findEvent($event: any) {
     return this.calendar.events.filter(e => e.year == $event.year && e.month == $event.month && e.date == $event.date)[0];
+  }
+
+  public loadEvents() {
+    this.api.get('calendar.json').subscribe(resp => resp && resp.data && this.currentEvents.next(resp.data));
   }
 }

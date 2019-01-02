@@ -20,13 +20,14 @@ export class HomePage implements AfterViewInit {
 
   constructor(public navCtrl: NavController,
     public customEventProvider: CustomEventProvider,
-    private storage: Storage) {
+    public storage: Storage) {
     this.currentEvents = customEventProvider.currentEvents;
   }
 
   ngAfterViewInit(): void {
     this.customEventProvider.calendar = this.calendar;
     this.storage.get('user').then((data: any) => console.log(data));
+    this.customEventProvider.loadEvents();
   }
 
   onDaySelect($event) {

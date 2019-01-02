@@ -13,12 +13,15 @@ import { CustomEventProvider } from '../providers/custom-event/custom-event';
 import { LoginPage } from '../pages/login/login';
 import { IonicStorageModule } from '@ionic/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApiProvider } from '../providers/api/api';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     CalendarModule,
@@ -41,7 +44,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CustomEventProvider
+    CustomEventProvider,
+    ApiProvider
   ]
 })
 export class AppModule {}
