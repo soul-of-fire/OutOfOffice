@@ -7,26 +7,26 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="save()">
+  <form [formGroup]="eventForm" novalidate (ngSubmit)="save()">
     <ion-list>
       <ion-item>
         <ion-label floating>Title</ion-label>
-        <ion-input type="text" [(ngModel)]="event.title" name="event.title"></ion-input>
+        <ion-input type="text" formControlName="title"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Notes</ion-label>
-        <ion-input type="text" [(ngModel)]="event.message" name="event.message"></ion-input>
+        <ion-label floating>Message</ion-label>
+        <ion-textarea type="text" formControlName="message"></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label floating>Date</ion-label>
-        <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="event.startDate" name="event.startDate"></ion-datetime>
+        <ion-label floating>From</ion-label>
+        <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="MM/DD/YYYY" formControlName="from"></ion-datetime>
       </ion-item>
-      <!-- <ion-item>
-        <ion-label floating>End Date</ion-label>
-        <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="event.endDate" name="event.endDate"></ion-datetime>
-      </ion-item> -->
       <ion-item>
-        <button ion-button type="submit" full>Create</button>
+        <ion-label floating>To</ion-label>
+        <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="MM/DD/YYYY" formControlName="to"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <button ion-button type="submit" [disabled]="!eventForm.valid" full>Create</button>
       </ion-item>
     </ion-list>
   </form>

@@ -12,20 +12,23 @@ import { CalendarModule } from 'ionic3-calendar-en';
 import { CustomEventProvider } from '../providers/custom-event/custom-event';
 import { LoginPage } from '../pages/login/login';
 import { IonicStorageModule } from '@ionic/storage';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    CalendarModule,
+    IonicStorageModule.forRoot()
+  ],
   declarations: [
     MyApp,
     HomePage,
     AddEventPage,
     LoginPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-    CalendarModule,
-    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
