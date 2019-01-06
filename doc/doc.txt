@@ -1,7 +1,12 @@
 https://github.com/gbrits/ionic-calendar#readme
 
-store events
 login service - auto log out
 authorization - edit events
 event edit / delete
 has internet indicator - CRUD
+
+----
+
+Id, User and range in data
+Two users for one date
+data is array

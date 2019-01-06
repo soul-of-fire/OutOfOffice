@@ -39,6 +39,7 @@ export class HomePage implements AfterViewInit {
   }
 
   onLogOut() {
+    this.storage.remove('user');
     this.navCtrl.push(LoginPage);
   }
 

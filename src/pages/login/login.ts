@@ -17,7 +17,7 @@ export class LoginPage {
   }
 
   login() {
-    this.storage.set('user', {name: 'Malin'});
+    this.storage.set('user', {name: this.username});
     this.navCtrl.push(HomePage);
   }
 }

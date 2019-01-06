@@ -17,20 +17,8 @@ export class ApiProvider {
     );
   }
 
-  post(...args): Observable<any> {
-    return this.http.post<any>(this.host + args[0], args[1], args[2]).pipe(
-      catchError(this.handleError())
-    );
-  }
-
-  put(...args): Observable<any> {
-    return this.http.put<any>(this.host + args[0], args[1], args[2]).pipe(
-      catchError(this.handleError())
-    );
-  }
-
-  remove(...args): Observable<any> {
-    return this.http.delete<any>(this.host + args[0]).pipe(
+  patch(...args): Observable<any> {
+    return this.http.patch<any>(this.host + args[0], args[1], args[2]).pipe(
       catchError(this.handleError())
     );
   }

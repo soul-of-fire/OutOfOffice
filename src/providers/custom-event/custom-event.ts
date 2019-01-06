@@ -28,7 +28,9 @@ export class CustomEventProvider {
       this.pushEvent(events, data, from);
     }
 
-    this.currentEvents.next(Object.assign([], events));
+    this.api.patch('calendar.json', JSON.stringify({ "data": events })).subscribe(() => {
+      this.currentEvents.next(Object.assign([], events));
+    })
   }
 
   private pushEvent(events: any, data: any, from: any): void {
