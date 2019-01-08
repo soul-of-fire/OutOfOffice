@@ -2,18 +2,17 @@ export class EventModel {
   year: number;
   month: number;
   date: number;
-  data = [];
+  data = {};
   constructor(title: string, message: string, date: Date, id: number, user: any) {
     this.year = date.getFullYear();
     this.month = date.getMonth();
     this.date = date.getDate();
     
-    const event = {
+    this.data = {
       id: id,
       user: user,
       title: title,
       message: message
     };
-    this.data.push(event);
   }
 }

@@ -5,8 +5,3 @@ authorization - edit events
 event edit / delete
 has internet indicator - CRUD
 
-----
-
-Id, User and range in data
-Two users for one date
-data is array
