@@ -15,6 +15,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
+import { MessagesPage } from '../pages/messages/messages';
 
 
 @NgModule({
@@ -31,14 +32,16 @@ import { HttpClientModule } from '@angular/common/http';
     MyApp,
     HomePage,
     AddEventPage,
-    LoginPage
+    LoginPage,
+    MessagesPage
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     AddEventPage,
-    LoginPage
+    LoginPage,
+    MessagesPage
   ],
   providers: [
     StatusBar,

@@ -17,15 +17,11 @@ export class HomePage implements AfterViewInit {
   @ViewChild('calendar') calendar;
   currentEvents: Observer<any>;
   selected: any;
-  user: any;
-
+  
   constructor(public navCtrl: NavController,
     public customEventProvider: CustomEventProvider,
     public storage: Storage) {
     this.currentEvents = customEventProvider.currentEvents;
-    this.storage.get('user').then((user: any) => {
-      this.user = user.name;
-    });
   }
 
   ngAfterViewInit(): void {

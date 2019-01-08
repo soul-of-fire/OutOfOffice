@@ -22,24 +22,5 @@
       </div>
     </ion-card-content>
   </ion-card>
-  <div *ngIf="selected">
-    <ion-card *ngFor="let event of selected">
-      <ion-card-header>
-        <ion-item class="header no-padding" no-lines>
-          <span item-start>
-            {{event.data.user.name}}: {{event.data.title}}
-          </span>
-          <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name">
-            <ion-icon name="create"></ion-icon>
-          </button>
-          <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name">
-            <ion-icon name="trash"></ion-icon>
-          </button>
-        </ion-item>
-      </ion-card-header>
-      <ion-card-content>
-        {{event.data.message}}
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <page-messages [selected]="selected"></page-messages>
 </ion-content>
