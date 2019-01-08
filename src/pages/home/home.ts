@@ -26,7 +26,6 @@ export class HomePage implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.customEventProvider.calendar = this.calendar;
-    this.storage.get('user').then((data: any) => console.log(data));
     this.customEventProvider.loadEvents();
   }
 

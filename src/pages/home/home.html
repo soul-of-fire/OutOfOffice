@@ -22,12 +22,14 @@
       </div>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngIf="selected && selected.data">
-    <ion-card-header>
-      {{selected.data.title}}
-    </ion-card-header>
-    <ion-card-content>
-      {{selected.data.message}}
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="(selected && selected.data) as data">
+    <ion-card *ngFor="let event of data">
+      <ion-card-header>
+        {{event.user.name}}: {{event.title}}
+      </ion-card-header>
+      <ion-card-content>
+        {{event.message}}
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
