@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { MessagesPage } from '../pages/messages/messages';
+import { EditEventPage } from '../pages/add-event/edit-event';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { MessagesPage } from '../pages/messages/messages';
     MyApp,
     HomePage,
     AddEventPage,
+    EditEventPage,
     LoginPage,
     MessagesPage
   ],
@@ -40,6 +42,7 @@ import { MessagesPage } from '../pages/messages/messages';
     MyApp,
     HomePage,
     AddEventPage,
+    EditEventPage,
     LoginPage,
     MessagesPage
   ],

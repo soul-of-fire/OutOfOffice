@@ -6,7 +6,7 @@
           <span item-start>
             {{event.data.user.name}}: {{event.data.title}}
           </span>
-          <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name" (click)="onEdit(event.data.id)">
+          <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name" (click)="onEdit(event)">
             <ion-icon name="create"></ion-icon>
           </button>
           <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name">
