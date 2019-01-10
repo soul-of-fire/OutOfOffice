@@ -30,7 +30,7 @@ export class HomePage implements AfterViewInit {
   }
 
   onDaySelect($event) {
-    this.selected = this.customEventProvider.findEvent($event);
+    this.selected = this.customEventProvider.findEvent($event, null);
   }
 
   onAddEvent() {

@@ -3,16 +3,18 @@ export class EventModel {
   month: number;
   date: number;
   data = {};
-  constructor(title: string, message: string, date: Date, id: number, user: any) {
+  constructor(data: any, date: Date, user: any) {
     this.year = date.getFullYear();
     this.month = date.getMonth();
     this.date = date.getDate();
     
     this.data = {
-      id: id,
+      id: new Date().getTime(),
       user: user,
-      title: title,
-      message: message
+      title: data.title,
+      message: data.message, 
+      from: data.from,
+      to: data.to
     };
   }
 }

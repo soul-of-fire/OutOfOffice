@@ -9,7 +9,7 @@
           <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name" (click)="onEdit(event)">
             <ion-icon name="create"></ion-icon>
           </button>
-          <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name">
+          <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name" (click)="onDelete(event)">
             <ion-icon name="trash"></ion-icon>
           </button>
         </ion-item>

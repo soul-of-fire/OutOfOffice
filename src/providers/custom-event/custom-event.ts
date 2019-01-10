@@ -16,34 +16,55 @@ export class CustomEventProvider {
 
   public addEvent(data: any): void {
     const events = this.calendar.events;
+    this.modify(data, events);
+  }
+
+  public editEvent(id: number, data: any) {
+    const array = this.removeById(id);
+    this.modify(data, array);
+  }
+
+  public deleteEvent(id: number) {
+    const events = this.removeById(id);
+    this.saveAndUpdate(events)
+  }
+
+  private modify(data: any, events: any) {
     const from = new Date(data.from);
     const to = data.to && new Date(data.to);
-    const id = new Date().getTime();
 
     this.storage.get('user').then((user: any) => {
       if (to) {
         const difference = Math.round((to.getTime() - from.getTime()) / this.day);
         for (let i = 0; i <= difference; i++) {
           i > 0 && from.setDate(from.getDate() + 1);
-          this.pushEvent(events, data, from, id, user);
+          this.pushEvent(events, data, from, user);
         }
       } else {
-        this.pushEvent(events, data, from, id, user);
+        this.pushEvent(events, data, from, user);
       }
-
-      this.api.patch('calendar.json', JSON.stringify({ "data": events })).subscribe(() => {
-        this.currentEvents.next(Object.assign([], events));
-      })
+      this.saveAndUpdate(events)
     });
   }
 
-  private pushEvent(events: any, data: any, from: any, id: number, user: any): void {
-    const event = new EventModel(data.title, data.message, from, id, user);
+  private saveAndUpdate(events: any) {
+    this.api.patch('calendar.json', JSON.stringify({ "data": events })).subscribe(() => {
+      this.currentEvents.next(Object.assign([], events));
+    })
+  }
+
+  private pushEvent(events: any, data: any, from: any, user: any): void {
+    const event = new EventModel(data, from, user);
     events.push(event);
   }
 
-  public findEvent($event: any) {
-    return this.calendar.events.filter(e => e.year == $event.year && e.month == $event.month && e.date == $event.date);
+  private removeById(id: number) {
+    return this.calendar.events.filter(e => e.data.id != id);
+  }
+
+  public findEvent($event: any, events: any) {
+    let data = events || this.calendar.events;
+    return data.filter(e => e.year == $event.year && e.month == $event.month && e.date == $event.date);
   }
 
   public loadEvents() {
