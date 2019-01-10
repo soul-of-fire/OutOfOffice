@@ -1,7 +1,3 @@
 https://github.com/gbrits/ionic-calendar#readme
 
-login service - auto log out
-authorization - edit events
-event edit / delete
-has internet indicator - CRUD
 

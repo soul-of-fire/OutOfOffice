@@ -1,8 +1,6 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { AddEventPage } from '../add-event/add-event';
-import { Calendar } from '@ionic-native/calendar';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CustomEventProvider } from '../../providers/custom-event/custom-event';
 import { Observer } from 'rxjs/Observer';
 import { LoginPage } from '../login/login';

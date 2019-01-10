@@ -22,7 +22,7 @@ export class AddEventPage implements OnInit {
     this.eventForm = this.formBuilder.group({
       title: '',
       message: ['', Validators.required],
-      from: ['', Validators.required],
+      from: [this.customEventProvider.objectToDate(), Validators.required],
       to: ''
     });
   }
@@ -32,4 +32,6 @@ export class AddEventPage implements OnInit {
     this.customEventProvider.addEvent(data);
     this.navCtrl.pop();
   }
+
+  
 }

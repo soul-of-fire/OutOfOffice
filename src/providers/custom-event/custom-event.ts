@@ -11,9 +11,20 @@ export class CustomEventProvider {
   public calendar: any;
   public day = 1000 * 60 * 60 * 24;
   public currentEvents = new BehaviorSubject([]);
+  public selected: any;
 
   constructor(public api: ApiProvider, public storage: Storage) {}
 
+  public loadEvents() {
+    this.api.get('calendar.json').subscribe(resp => resp && resp.data && this.currentEvents.next(resp.data));
+  }
+  
+  public findEvent($event: any, events: any) {
+    this.selected = $event;
+    events = events || this.calendar.events;
+    return events.filter(e => e.year == $event.year && e.month == $event.month && e.date == $event.date);
+  }
+  
   public addEvent(data: any): void {
     const events = this.calendar.events;
     this.modify(data, events);
@@ -27,6 +38,28 @@ export class CustomEventProvider {
   public deleteEvent(id: number) {
     const events = this.removeById(id);
     this.saveAndUpdate(events)
+  }
+
+  public onEventChange(data) {
+    if (data.length > 0) {
+      const mark = this.selected || {
+        year: this.calendar.currentYear,
+        month: this.calendar.currentMonth,
+        date: this.calendar.currentDate
+      };
+      return this.findEvent(mark, data);
+    }
+  }
+
+  public objectToDate() {
+    if(!this.selected) {
+      return '';
+    }
+    let month = this.selected.month + 1;
+    month = month < 10 ? '0' + month : month;
+    let day = this.selected.date;
+    day = day < 10 ? '0' + day : day;
+    return `${this.selected.year}-${month}-${day}`
   }
 
   private modify(data: any, events: any) {
@@ -60,14 +93,5 @@ export class CustomEventProvider {
 
   private removeById(id: number) {
     return this.calendar.events.filter(e => e.data.id != id);
-  }
-
-  public findEvent($event: any, events: any) {
-    let data = events || this.calendar.events;
-    return data.filter(e => e.year == $event.year && e.month == $event.month && e.date == $event.date);
-  }
-
-  public loadEvents() {
-    this.api.get('calendar.json').subscribe(resp => resp && resp.data && this.currentEvents.next(resp.data));
   }
 }

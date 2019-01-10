@@ -6,10 +6,10 @@
           <span item-start>
             {{event.data.user.name}}: {{event.data.title}}
           </span>
-          <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name" (click)="onEdit(event)">
+          <button item-end ion-button small color="dark" *ngIf="isMyMessage(event.data.user.name)" (click)="onEdit(event)">
             <ion-icon name="create"></ion-icon>
           </button>
-          <button item-end ion-button small color="dark" *ngIf="user == event.data.user.name" (click)="onDelete(event)">
+          <button item-end ion-button small color="dark" *ngIf="isMyMessage(event.data.user.name)" (click)="onDelete(event)">
             <ion-icon name="trash"></ion-icon>
           </button>
         </ion-item>
