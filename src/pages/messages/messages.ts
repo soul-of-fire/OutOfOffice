@@ -23,10 +23,9 @@ export class MessagesPage implements OnInit, OnDestroy {
     this.storage.get('user').then((user: any) => {
       this.user = user.name;
     });
-    this.subscription = this.customEventProvider.currentEvents.subscribe(data => {
-      // console.log(this.customEventProvider.calendar);
-      this.selected = this.customEventProvider.onEventChange(data);
-    })
+    // this.subscription = this.customEventProvider.currentEvents.subscribe(data => {
+    //   this.selected = this.customEventProvider.onEventChange(data);
+    // })
   }
 
   ngOnDestroy() {

@@ -5,6 +5,10 @@ import { CustomEventProvider } from '../../providers/custom-event/custom-event';
 import { Observer } from 'rxjs/Observer';
 import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
+import firebase from 'Firebase';
+import { Observable } from 'rxjs/Observable';
+import Rx from 'rxjs/Rx';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'page-home',
@@ -13,22 +17,31 @@ import { Storage } from '@ionic/storage';
 export class HomePage implements AfterViewInit {
 
   @ViewChild('calendar') calendar;
-  currentEvents: Observer<any>;
   selected: any;
+  currentEvents: any;
   
   constructor(public navCtrl: NavController,
     public customEventProvider: CustomEventProvider,
     public storage: Storage) {
-    this.currentEvents = customEventProvider.currentEvents;
   }
 
   ngAfterViewInit(): void {
     this.customEventProvider.calendar = this.calendar;
-    this.customEventProvider.loadEvents();
+    // this.customEventProvider.loadEvents();
+    this.currentEvents = Rx.Observable.fromEvent(firebase.database().ref('calendar'), 'value').pipe(
+      map((data: any) =>  data.val() && data.val().data || [])
+    );
   }
-
+  
   onDaySelect($event) {
     this.selected = this.customEventProvider.findEvent($event, null);
+    // console.log($event);
+    // this.selected = this.currentEvents.pipe(
+    //   filter((e: any) => {
+    //     console.log(e)
+    //     return e.year == $event.year && e.month == $event.month && e.date == $event.date;
+    //   })
+    // )
   }
 
   onAddEvent() {

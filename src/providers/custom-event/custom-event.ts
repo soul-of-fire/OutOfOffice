@@ -4,20 +4,21 @@ import { EventModel } from '../../app/models/EventModel';
 import { ApiProvider } from '../api/api';
 import { merge, combineLatest } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import firebase from 'Firebase';
 
 @Injectable()
 export class CustomEventProvider {
 
   public calendar: any;
   public day = 1000 * 60 * 60 * 24;
-  public currentEvents = new BehaviorSubject([]);
   public selected: any;
+  // public currentEvents = new BehaviorSubject([]);
 
   constructor(public api: ApiProvider, public storage: Storage) {}
 
-  public loadEvents() {
-    this.api.get('calendar.json').subscribe(resp => resp && resp.data && this.currentEvents.next(resp.data));
-  }
+  // public loadEvents() {
+  //   this.api.get('calendar.json').subscribe(resp => resp && resp.data && this.currentEvents.next(resp.data));
+  // }
   
   public findEvent($event: any, events: any) {
     this.selected = $event;
@@ -81,9 +82,10 @@ export class CustomEventProvider {
   }
 
   private saveAndUpdate(events: any) {
-    this.api.patch('calendar.json', JSON.stringify({ "data": events })).subscribe(() => {
-      this.currentEvents.next(Object.assign([], events));
-    })
+    // this.api.patch('calendar.json', JSON.stringify({ "data": events })).subscribe(() => {
+    //   this.currentEvents.next(Object.assign([], events));
+    // })
+    firebase.database().ref('calendar').set(Object.assign([], {data: events}));
   }
 
   private pushEvent(events: any, data: any, from: any, user: any): void {
