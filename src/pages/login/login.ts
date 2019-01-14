@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { Storage } from '@ionic/storage';
+import { EventService } from '../../providers/event-service';
 
 @Component({
   selector: 'page-login',
@@ -12,12 +12,11 @@ export class LoginPage {
   public password: string = 'aha';
 
   constructor(public navCtrl: NavController, 
-    public navParams: NavParams,
-    private storage: Storage) {
+    public eventService: EventService) {
   }
 
   login() {
-    this.storage.set('user', {name: this.username});
+    this.eventService.login({name: this.username});
     this.navCtrl.push(HomePage);
   }
 }

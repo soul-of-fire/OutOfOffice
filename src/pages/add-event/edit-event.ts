@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { CustomEventProvider } from '../../providers/custom-event/custom-event';
-import { EventModel } from '../../app/models/EventModel';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { AddEventPage } from './add-event';
 
 @Component({
@@ -26,7 +23,7 @@ export class EditEventPage extends AddEventPage implements OnInit {
 
   save() {
     const data = this.eventForm.getRawValue();
-    this.customEventProvider.editEvent(this.id, data);
+    this.eventService.editEvent(this.id, data);
     this.navCtrl.pop();
   }
 }

@@ -4,7 +4,7 @@
       Calendar
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="onAddEvent()">
+      <button ion-button icon-only (click)="onAddEvent()" *ngIf="eventService.user">
         <ion-icon name="add-circle"></ion-icon>
       </button>
       <button ion-button icon-only (click)="onLogOut()">
@@ -22,5 +22,5 @@
       </div>
     </ion-card-content>
   </ion-card>
-  <page-messages [selected]="selected"></page-messages>
+  <page-messages [selected]="(selected | async)"></page-messages>
 </ion-content>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { CustomEventProvider } from '../../providers/custom-event/custom-event';
-import { EventModel } from '../../app/models/EventModel';
+import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EventService } from '../../providers/event-service';
 
 @Component({
   selector: 'page-add-event',
@@ -11,10 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddEventPage implements OnInit {
   eventForm: FormGroup;
 
-  constructor(public alertCtrl: AlertController,
-    public navCtrl: NavController,
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public customEventProvider: CustomEventProvider,
+    public eventService: EventService,
     public formBuilder: FormBuilder) {
   }
 
@@ -22,14 +20,14 @@ export class AddEventPage implements OnInit {
     this.eventForm = this.formBuilder.group({
       title: '',
       message: ['', Validators.required],
-      from: [this.customEventProvider.objectToDate(), Validators.required],
+      from: [this.eventService.objectToDate(), Validators.required],
       to: ''
     });
   }
 
   save() {
     const data = this.eventForm.getRawValue();
-    this.customEventProvider.addEvent(data);
+    this.eventService.addEvent(data);
     this.navCtrl.pop();
   }
 
