@@ -4,7 +4,7 @@
       Calendar
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="onAddEvent()" *ngIf="eventService.user">
+      <button ion-button icon-only (click)="onAddEvent()" *ngIf="utilsService.user">
         <ion-icon name="add-circle"></ion-icon>
       </button>
       <button ion-button icon-only (click)="onLogOut()">

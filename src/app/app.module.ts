@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MessagesPage } from '../pages/messages/messages';
 import { EditEventPage } from '../pages/add-event/edit-event';
 import { EventService } from '../providers/event-service';
+import { UtilsService } from '../providers/utils-service';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { EventService } from '../providers/event-service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EventService
+    EventService,
+    UtilsService
   ]
 })
 export class AppModule {}

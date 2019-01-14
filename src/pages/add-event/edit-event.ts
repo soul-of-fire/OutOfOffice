@@ -8,22 +8,20 @@ import { AddEventPage } from './add-event';
 })
 export class EditEventPage extends AddEventPage implements OnInit {
   eventForm: FormGroup;
-  id: number;
+  event: any;
 
   ngOnInit() {
-    const event = this.navParams.get('ev');
-    this.id = event.data.id;
+    this.event = this.navParams.get('ev');
     this.eventForm = this.formBuilder.group({
-      title: event.data.title,
-      message: [event.data.message, Validators.required],
-      from: [event.data.from, Validators.required],
-      to: event.data.to
+      title: this.event.data.title,
+      message: [this.event.data.message, Validators.required],
+      from: [this.event.data.from, Validators.required],
+      to: this.event.data.to
     });
   }
 
   save() {
-    const data = this.eventForm.getRawValue();
-    this.eventService.editEvent(this.id, data);
+    this.eventService.editEvent(this.event.data.id, this.eventForm.getRawValue());
     this.navCtrl.pop();
   }
 }

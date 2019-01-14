@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventService } from '../../providers/event-service';
+import { UtilsService } from '../../providers/utils-service';
 
 @Component({
   selector: 'page-add-event',
@@ -13,23 +14,23 @@ export class AddEventPage implements OnInit {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public eventService: EventService,
+    public utilsService: UtilsService,
     public formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    let selected = this.navParams.get('selected');
+    selected = selected && this.utilsService.objectToDate(selected) || '';
     this.eventForm = this.formBuilder.group({
       title: '',
       message: ['', Validators.required],
-      from: [this.eventService.objectToDate(), Validators.required],
+      from: [selected, Validators.required],
       to: ''
     });
   }
 
   save() {
-    const data = this.eventForm.getRawValue();
-    this.eventService.addEvent(data);
+    this.eventService.addEvent(this.eventForm.getRawValue());
     this.navCtrl.pop();
   }
-
-  
 }

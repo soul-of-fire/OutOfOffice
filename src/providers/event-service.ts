@@ -1,27 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
-import firebase from 'Firebase';
 import { EventModel } from '../app/models/EventModel';
+import { UtilsService } from './utils-service';
 
 @Injectable()
 export class EventService {
 
   public calendar: any;
   public day = 1000 * 60 * 60 * 24;
-  public selected: any;
-  public user: any;
 
-  constructor(public storage: Storage) {
-    this.storage.get('user').then((user: any) => {
-      this.user = user;
-    });
-  }
+  constructor(public utilService: UtilsService) {}
   
-  public login(user: any) {
-    this.user = user;
-    this.storage.set('user', user);
-  }
-
   public addEvent(data: any): void {
     const events = this.calendar.events;
     this.modify(data, events);
@@ -34,18 +22,7 @@ export class EventService {
 
   public deleteEvent(id: number) {
     const events = this.removeById(id);
-    this.saveAndUpdate(events)
-  }
-
-  public objectToDate() {
-    if(!this.selected) {
-      return '';
-    }
-    let month = this.selected.month + 1;
-    month = month < 10 ? '0' + month : month;
-    let day = this.selected.date;
-    day = day < 10 ? '0' + day : day;
-    return `${this.selected.year}-${month}-${day}`
+    this.utilService.persist(events)
   }
 
   private modify(data: any, events: any) {
@@ -61,16 +38,11 @@ export class EventService {
     } else {
       this.pushEvent(events, data, from);
     }
-    this.saveAndUpdate(events)
-  }
-
-  private saveAndUpdate(events: any) {
-    firebase.database().ref('calendar').set(Object.assign([], {data: events}));
+    this.utilService.persist(events)
   }
 
   private pushEvent(events: any, data: any, from: any): void {
-    const event = new EventModel(data, from, this.user);
-    events.push(event);
+    events.push(new EventModel(data, from, this.utilService.user));
   }
 
   private removeById(id: number) {

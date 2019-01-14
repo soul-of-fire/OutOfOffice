@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { EditEventPage } from '../add-event/edit-event';
 import { EventService } from '../../providers/event-service';
+import { UtilsService } from '../../providers/utils-service';
 
 @Component({
   selector: 'page-messages',
@@ -13,10 +14,11 @@ export class MessagesPage {
 
   constructor(public navCtrl: NavController,
     public eventService: EventService,
+    public utilsService: UtilsService,
     private alertCtrl: AlertController) {}
 
   isMyMessage(user: string) {
-    return this.isOnLine && this.eventService.user && user == this.eventService.user.name;
+    return this.isOnLine && this.utilsService.user && user == this.utilsService.user.name;
   }
 
   onEdit(ev: any) {
