@@ -1,3 +1,31 @@
 https://github.com/gbrits/ionic-calendar#readme
 
+? offline functionality
+remove scroll events
+year empty space
+edit mark selected
+firebase config page
 
+
+import { Network } from '@ionic-native/network';
+import { Subscription } from 'rxjs';
+  connected: Subscription;
+  disconnected: Subscription;
+, 
+    private network: Network
+ionViewDidEnter() {
+  console.log('Aha');
+  this.connected = this.network.onConnect().subscribe(data => {
+    console.log(data)
+  }, error => console.error(error));
+  
+  this.disconnected = this.network.onDisconnect().subscribe(data => {
+    console.log(data)
+  }, error => console.error(error));
+}
+
+ionViewWillLeave(){
+  console.log('By');
+  this.connected.unsubscribe();
+  this.disconnected.unsubscribe();
+}

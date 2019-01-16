@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AddEventPage } from '../add-event/add-event';
 import { LoginPage } from '../login/login';
@@ -10,7 +10,7 @@ import { UtilsService } from '../../providers/utils-service';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements AfterViewInit {
+export class HomePage implements AfterViewInit, OnDestroy {
 
   @ViewChild('calendar') calendar;
   day: any;
@@ -33,6 +33,12 @@ export class HomePage implements AfterViewInit {
         });
       })
     );
+  }
+
+  ngOnDestroy() {
+    this.currentEvents.unsubscribe();
+    this.selected.unsubscribe();
+    this.utilsService.isOnline.unsubscribe();
   }
   
   onDaySelect($event) {

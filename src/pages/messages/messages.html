@@ -1,22 +1,22 @@
-<ion-content>
-  <div *ngIf="selected">
-    <ion-card *ngFor="let event of selected">
-      <ion-card-header>
-        <ion-item class="header no-padding" no-lines>
-          <span item-start>
-            {{event.data.user.name}}: {{event.data.title}}
-          </span>
-          <button item-end ion-button small color="dark" *ngIf="isMyMessage(event.data.user.name)" (click)="onEdit(event)">
+<ion-content *ngIf="selected">
+  <ion-card *ngFor="let event of selected">
+    <ion-card-header>
+      <ion-item class="header no-padding" no-lines>
+        <span item-start>
+          {{event.data.user.name}}
+        </span>
+        <ion-buttons end *ngIf="(utilsService.isOnline | async) && isMyMessage(event.data.user.name)">
+          <button ion-button small color="dark" (click)="onEdit(event)">
             <ion-icon name="create"></ion-icon>
           </button>
-          <button item-end ion-button small color="dark" *ngIf="isMyMessage(event.data.user.name)" (click)="onDelete(event)">
+          <button ion-button small color="dark" (click)="onDelete(event)">
             <ion-icon name="trash"></ion-icon>
           </button>
-        </ion-item>
-      </ion-card-header>
-      <ion-card-content>
-        {{event.data.message}}
-      </ion-card-content>
-    </ion-card>
-  </div>
+        </ion-buttons>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{event.data.title}}: {{event.data.message}}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

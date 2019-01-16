@@ -10,7 +10,6 @@ import { UtilsService } from '../../providers/utils-service';
 })
 export class MessagesPage {
   @Input() selected: any;
-  isOnLine: boolean = navigator.onLine;
 
   constructor(public navCtrl: NavController,
     public eventService: EventService,
@@ -18,7 +17,7 @@ export class MessagesPage {
     private alertCtrl: AlertController) {}
 
   isMyMessage(user: string) {
-    return this.isOnLine && this.utilsService.user && user == this.utilsService.user.name;
+    return this.utilsService.user && user == this.utilsService.user.name;
   }
 
   onEdit(ev: any) {

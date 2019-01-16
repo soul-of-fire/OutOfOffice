@@ -4,7 +4,6 @@ import { UtilsService } from './utils-service';
 
 @Injectable()
 export class EventService {
-
   public calendar: any;
   public day = 1000 * 60 * 60 * 24;
 

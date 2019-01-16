@@ -3,8 +3,8 @@
     <ion-title>
       Calendar
     </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="onAddEvent()" *ngIf="utilsService.user">
+    <ion-buttons end style="width: 80px! Important;">
+      <button ion-button icon-only (click)="onAddEvent()" *ngIf="(utilsService.isOnline | async) && utilsService.user">
         <ion-icon name="add-circle"></ion-icon>
       </button>
       <button ion-button icon-only (click)="onLogOut()">
@@ -18,7 +18,7 @@
   <ion-card>
     <ion-card-content>
       <div (swipe)="swipe($event)">
-        <ion-calendar #calendar [events]="(currentEvents | async) || []" (onDaySelect)="onDaySelect($event)"></ion-calendar>
+        <ion-calendar #calendar [events]="(currentEvents | async) || []" (onDaySelect)="onDaySelect($event)" lang="en"></ion-calendar>
       </div>
     </ion-card-content>
   </ion-card>

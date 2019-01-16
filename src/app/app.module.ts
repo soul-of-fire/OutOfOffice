@@ -16,6 +16,7 @@ import { MessagesPage } from '../pages/messages/messages';
 import { EditEventPage } from '../pages/add-event/edit-event';
 import { EventService } from '../providers/event-service';
 import { UtilsService } from '../providers/utils-service';
+import { Network } from '@ionic-native/network';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { UtilsService } from '../providers/utils-service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EventService,
-    UtilsService
+    UtilsService,
+    Network
   ]
 })
 export class AppModule {}
