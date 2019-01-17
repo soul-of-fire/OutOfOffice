@@ -1,5 +1,7 @@
 https://github.com/gbrits/ionic-calendar#readme
 
+npm i @firebase/database@0.2.1
+
 ? offline functionality
 remove scroll events
 year empty space
